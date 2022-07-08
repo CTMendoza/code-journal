@@ -16,10 +16,32 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <header>
-  </header>
-  <main>
-  </main>
+  <div class="container">
+    <header>
+      <h2>Code Journal</h2>
+      <h1>New Entry</h1>
+    </header>
+    <main>
+      <div data-view="entry-form ">
+        <form action="">
+          <div class="row">
+            <img src="images/placeholder-image-square.jpg" alt="placeholder-image-square" class="column-half">
+            <div>
+              <h3>Title</h3>
+              <input type="text">
+              <h3>Photo URL</h3>
+              <input type="text">
+            </div>
+          </div>
+          <div>
+            <h3>Notes</h3>
+            <textarea name="Notes" id="form-notes" cols="30" rows="10"></textarea>
+          </div>
+        </form>
+      </div>
+    </main>
+  </div>
+
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
 </body>
