@@ -1,0 +1,62 @@
+body {
+  background-color: #d3d3d3;
+}
+
+header {
+  background-color: #571089;
+  margin: 0 auto;
+}
+
+h2 {
+  font-family:
+    "Titillium Web",
+    sans-serif;
+  color: white;
+  margin-top: auto;
+}
+
+h1 {
+  font-family:
+    "Titillium Web",
+    sans-serif;
+  background-color: #d3d3d3;
+}
+
+label {
+  font-family:
+    "Titillium Web",
+    sans-serif;
+  font-size: 20px;
+}
+
+input,
+textarea {
+  border-radius: 5px;
+}
+
+.save-bttn {
+  font-family:
+    "Titillium Web",
+    sans-serif;
+  font-size: 20px;
+  width: 86px;
+  border-radius: 5px;
+  color: white;
+  background-color: #571089;
+}
+
+.input-height {
+  height: 30px;
+}
+
+.justify-end {
+  justify-content: flex-end;
+}
+
+.labels-marg-bttm {
+  margin-bottom: 0.75rem;
+}
+
+.labels-marg-top {
+  margin-top: 0.75rem;
+}
