@@ -5,7 +5,13 @@
 .container {
   max-width: 575px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 22px;
+}
+
+.margin-auto {
+  max-width: 575px;
+  margin: 0 auto;
+  padding: 0 22px;
 }
 
 .row {
@@ -24,8 +30,17 @@
 }
 
 @media screen and (min-width: 768px) {
-  .container {
+  .container,
+  .margin-auto {
     max-width: 900px;
+  }
+
+  h1 {
+    padding-left: 10px;
+  }
+
+  .margin-auto {
+    padding: 0 30px;
   }
 
   .column-full,
