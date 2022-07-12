@@ -25,25 +25,27 @@
   <main class="container">
     <h1>New Entry</h1>
     <div data-view="entry-form ">
-      <form action="">
+      <form action="" id="journal-entry">
         <div class="row">
-          <img src="images/placeholder-image-square.jpg" alt="placeholder-image-square" class="column-half">
+          <div class="column-half column">
+            <img src="images/placeholder-image-square.jpg" alt="placeholder-image-square" >
+          </div>
           <div class="column-half">
             <div class="labels-marg-bttm ">
               <label for="title">Title</label>
             </div>
-            <input id="title" type="text" class="column-full input-height">
+            <input name="title" required id="title" type="text" class="column-full input-height">
             <div class="labels-marg-bttm labels-marg-top">
-              <label for="url">Photo URL</label>
+              <label for="photourl">Photo URL</label>
             </div>
-            <input id="url" type="text" class="column-full input-height">
+            <input name="photourl" required id="photo-url" type="text" class="column-full input-height">
           </div>
         </div>
         <div class="column-full">
           <div class="labels-marg-bttm labels-marg-top">
             <label for="notes">Notes</label>
           </div>
-          <textarea name="Notes" id="notes" cols="30" rows="10" class="column-full"></textarea>
+          <textarea name="notes" id="notes" cols="30" rows="10" class="column-full"></textarea>
         </div>
         <div class="row justify-end labels-marg-top column-full">
           <input type="submit" value="SAVE" class="save-bttn">
