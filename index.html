@@ -14,11 +14,44 @@
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
+    <h2 class="margin-auto">Code Journal</h2>
   </header>
-  <main>
+  <main class="container">
+    <h1>New Entry</h1>
+    <div data-view="entry-form ">
+      <form action="" id="journal-entry">
+        <div class="row">
+          <div class="column-half column">
+            <img src="images/placeholder-image-square.jpg" alt="placeholder-image-square" >
+          </div>
+          <div class="column-half">
+            <div class="labels-marg-bttm ">
+              <label for="title">Title</label>
+            </div>
+            <input name="title" required id="title" type="text" class="column-full input-height">
+            <div class="labels-marg-bttm labels-marg-top">
+              <label for="photourl">Photo URL</label>
+            </div>
+            <input name="photourl" required id="photo-url" type="text" class="column-full input-height">
+          </div>
+        </div>
+        <div class="column-full">
+          <div class="labels-marg-bttm labels-marg-top">
+            <label for="notes">Notes</label>
+          </div>
+          <textarea name="notes" id="notes" cols="30" rows="10" class="column-full"></textarea>
+        </div>
+        <div class="row justify-end labels-marg-top column-full">
+          <input type="submit" value="SAVE" class="save-bttn">
+        </div>
+      </form>
+    </div>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>

@@ -5,12 +5,23 @@
 .container {
   max-width: 575px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 22px;
+}
+
+.margin-auto {
+  max-width: 575px;
+  margin: 0 auto;
+  padding: 5px 22px;
 }
 
 .row {
   display: flex;
   flex-wrap: wrap;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
 }
 
 .column-full,
@@ -19,8 +30,17 @@
 }
 
 @media screen and (min-width: 768px) {
-  .container {
+  .container,
+  .margin-auto {
     max-width: 900px;
+  }
+
+  h1 {
+    padding-left: 10px;
+  }
+
+  .margin-auto {
+    padding: 5px 30px;
   }
 
   .column-full,
