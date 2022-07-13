@@ -4,6 +4,7 @@ body {
 
 header {
   background-color: #571089;
+  height: 57px;
 }
 
 h2 {
@@ -12,6 +13,7 @@ h2 {
     sans-serif;
   color: white;
   margin-top: auto;
+  font-weight: 200;
 }
 
 h1 {
@@ -26,11 +28,27 @@ label {
     "Titillium Web",
     sans-serif;
   font-size: 20px;
+  font-weight: bold;
 }
 
-input,
+input[type="text"],
 textarea {
   border-radius: 5px;
+  border-width: thin;
+  font-family:
+    "Titillium Web",
+    sans-serif;
+  font-size: medium;
+  border-color: #adb5bd;
+  border-style: solid;
+}
+
+input:focus {
+  border-color: #571089;
+}
+
+textarea:focus {
+  border-color: #571089;
 }
 
 .save-bttn {

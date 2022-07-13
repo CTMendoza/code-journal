@@ -11,7 +11,7 @@
 .margin-auto {
   max-width: 575px;
   margin: 0 auto;
-  padding: 0 22px;
+  padding: 5px 22px;
 }
 
 .row {
@@ -40,7 +40,7 @@
   }
 
   .margin-auto {
-    padding: 0 30px;
+    padding: 5px 30px;
   }
 
   .column-full,

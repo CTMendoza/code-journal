@@ -17,8 +17,6 @@ function handleInput(event) {
 // Listening for 'submit' events on the #journal-entry form element
 
 var $journalEntry = document.querySelector('#journal-entry');
-// var $title = $journalEntry.elements.title.value;
-// var $photo = $journalEntry.elements.photourl;
 
 function handleSubmit(event) {
   var newObject = {};
@@ -29,7 +27,7 @@ function handleSubmit(event) {
   Object.assign(newObject, { title: $title, photo: $photo, notes: $notes });
   newObject.entryId = data.nextEntryId;
   data.nextEntryId++;
-  data.entries.push(newObject);
+  data.entries.unshift(newObject);
   $img.setAttribute('src', 'images/placeholder-image-square.jpg');
   $journalEntry.reset();
 }
