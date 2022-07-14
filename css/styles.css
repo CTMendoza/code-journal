@@ -51,6 +51,31 @@ textarea:focus {
   border-color: #571089;
 }
 
+ul {
+  list-style-type: none;
+  padding-inline-start: 0;
+}
+
+p {
+  font-family:
+    "Titillium Web",
+    sans-serif;
+}
+
+img {
+  object-fit: fill;
+}
+
+.li-marg-bot {
+  margin-bottom: 15%;
+}
+
+.title {
+  font-family:
+    "Titillium Web",
+    sans-serif;
+}
+
 .save-bttn {
   font-family:
     "Titillium Web",
