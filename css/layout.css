@@ -19,6 +19,13 @@
   flex-wrap: wrap;
 }
 
+.row2 {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  padding: 0 22px;
+}
+
 .column {
   display: flex;
   flex-direction: column;
@@ -40,7 +47,7 @@
   }
 
   .margin-auto {
-    padding: 5px 30px;
+    padding: 5px 0;
   }
 
   .column-full,

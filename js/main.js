@@ -29,6 +29,8 @@ function handleSubmit(event) {
   data.nextEntryId++;
   data.entries.unshift(newObject);
   $img.setAttribute('src', 'images/placeholder-image-square.jpg');
+  var $entryDOM = $renderEntry(newObject);
+  $ul.prepend($entryDOM);
   $journalEntry.reset();
 }
 
@@ -80,9 +82,9 @@ function $renderEntry(entry) {
 var $ul = document.querySelector('ul');
 
 function $appendEntry(event) {
-  for (var i = data.entries.length - 1; i >= 0; i--) {
+  for (var i = 0; i < data.entries.length; i++) {
     var $entryReturn = $renderEntry(data.entries[i]);
-    $ul.prepend($entryReturn);
+    $ul.append($entryReturn);
   }
 }
 

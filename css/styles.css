@@ -12,6 +12,14 @@ h2 {
     "Titillium Web",
     sans-serif;
   color: white;
+  font-weight: 200;
+}
+
+a {
+  font-family:
+    "Titillium Web",
+    sans-serif;
+  color: white;
   margin-top: auto;
   font-weight: 200;
 }
@@ -64,6 +72,11 @@ p {
 
 img {
   object-fit: fill;
+}
+
+.h2-container {
+  max-width: 575px;
+  margin: 0 22px;
 }
 
 .li-marg-bot {
