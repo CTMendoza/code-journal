@@ -19,6 +19,15 @@
   padding: 5px 22px;
 }
 
+.nav-marg {
+  margin-right: 5%;
+  margin-left: 1%;
+}
+
+.a-new-marg {
+  margin-right: 2px;
+}
+
 .row {
   display: flex;
   flex-wrap: wrap;
@@ -59,6 +68,15 @@
   .container,
   .margin-auto {
     max-width: 900px;
+  }
+
+  .nav-marg {
+    margin-right: 5%;
+    margin-left: 3%;
+  }
+
+  .a-new-marg {
+    margin-right: 18px;
   }
 
   h1 {

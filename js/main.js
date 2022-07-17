@@ -18,6 +18,10 @@ function handleInput(event) {
 
 var $journalEntry = document.querySelector('#journal-entry');
 
+var $formView = document.querySelector('div[data-view="entry-form"]');
+
+var $entriesView = document.querySelector('div[data-view="entries"]');
+
 function handleSubmit(event) {
   var newObject = {};
   event.preventDefault();
@@ -31,6 +35,8 @@ function handleSubmit(event) {
   $img.setAttribute('src', 'images/placeholder-image-square.jpg');
   var $entryDOM = $renderEntry(newObject);
   $ul.prepend($entryDOM);
+  $entriesView.classList.remove('hidden');
+  $formView.className('hidden');
   $journalEntry.reset();
 }
 

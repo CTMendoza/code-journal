@@ -21,24 +21,19 @@
 <body>
   <header class="navbar">
     <nav class="container tab-container">
-      <div class="column-half">
+      <div class="nav-marg" >
         <h2>Code Journal</h2>
       </div>
       <nav>
-        <a href="">Entries</a>
+        <a href="" class="a-entries">Entries</a>
       </nav>
     </nav>
   </header>
   <main class="container">
-    <div class="row3 justify-between">
-      <div class="column-half">
+    <div data-view="entry-form">
+      <div class="row3 justify-between">
         <h1>New Entry</h1>
       </div>
-      <nav>
-        <a href="">New</a>
-      </nav>
-    </div>
-    <div data-view="entry-form ">
       <form action="" id="journal-entry">
         <div class="row">
           <div class="column-half column">
@@ -66,33 +61,16 @@
         </div>
       </form>
     </div>
-    <div data-view="entries">
-      <h1>Entries</h1>
+    <div data-view="entries" class="hidden">
+      <div class="row3 justify-between">
+        <div class="column-half">
+          <h1>Entries</h1>
+        </div>
+        <nav class="a-new-marg">
+          <a class="a-new" href="#">New</a>
+        </nav>
+      </div>
       <ul>
-        <!-- <li>
-          <div class="row li-marg-bot">
-            <div class="column-half column">
-              <img src="https://masterwp.com/wp-content/uploads/2022/03/ava-lovelace.png" alt="">
-            </div>
-            <div class="column-half">
-              <h3 class="title">Ada LoveLace</h3>
-              <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id quasi corporis ipsam corrupti minima, commodi ipsa possimus aut exercitationem error quisquam perspiciatis voluptas, quia alias voluptate provident doloribus necessitatibus consequuntur?</p>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="row li-marg-bot">
-            <div class="column-half column">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/480px-Unofficial_JavaScript_logo_2.svg.png" alt="">
-            </div>
-            <div class="column-half">
-              <h3 class="title">Javascript</h3>
-              <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id quasi corporis ipsam corrupti minima, commodi ipsa
-                possimus aut exercitationem error quisquam perspiciatis voluptas, quia alias voluptate provident doloribus
-                necessitatibus consequuntur?</p>
-            </div>
-          </div>
-        </li>  -->
       </ul>
     </div>
   </main>
