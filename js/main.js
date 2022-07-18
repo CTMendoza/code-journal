@@ -35,8 +35,11 @@ function handleSubmit(event) {
   $img.setAttribute('src', 'images/placeholder-image-square.jpg');
   var $entryDOM = $renderEntry(newObject);
   $ul.prepend($entryDOM);
-  $entriesView.classList.remove('hidden');
-  $formView.className('hidden');
+
+  // Ensure that submitting a new journal entry automatically shows the 'entries' view without reloading the page.
+  $entriesView.className = '';
+  $formView.className = 'hidden';
+
   $journalEntry.reset();
 }
 
@@ -95,3 +98,13 @@ function $appendEntry(event) {
 }
 
 window.addEventListener('DOMContentLoaded', $appendEntry);
+
+// When clicking Entries nav item, user is brought the Entries section of web page
+
+var $entriesTab = document.querySelector('.a-entries');
+
+$entriesTab.addEventListener('click', switchToNewEntry);
+
+function switchToNewEntry(event) {
+
+}
