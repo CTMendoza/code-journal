@@ -39,6 +39,11 @@ function handleSubmit(event) {
   // Ensure that submitting a new journal entry automatically shows the 'entries' view without reloading the page.
   $entriesView.className = '';
   $formView.className = 'hidden';
+  // if data.entries is not an empty array update $divEmptyEntries.className to hidden
+
+  if (data.entries.length > 0) {
+    $divEmptyEntries.className = 'hidden';
+  }
 
   $journalEntry.reset();
 }
@@ -95,16 +100,63 @@ function $appendEntry(event) {
     var $entryReturn = $renderEntry(data.entries[i]);
     $ul.append($entryReturn);
   }
+  if (data.entries.length > 0) {
+    $divEmptyEntries.className = 'hidden';
+  }
 }
 
 window.addEventListener('DOMContentLoaded', $appendEntry);
 
 // When clicking Entries nav item, user is brought the Entries section of web page
 
-var $entriesTab = document.querySelector('.a-entries');
+var $entriesAnchor = document.querySelector('.a-entries');
 
-$entriesTab.addEventListener('click', switchToNewEntry);
+$entriesAnchor.addEventListener('click', switchToNewEntry);
 
 function switchToNewEntry(event) {
-
+  if (event.target.matches('.a-entries')) {
+    $entriesView.className = '';
+    $formView.className = 'hidden';
+  }
 }
+
+// When clicking New nav item, user is brought the Form section of web page
+
+var $newAnchor = document.querySelector('.a-new');
+
+$newAnchor.addEventListener('click', switchToFormEntry);
+
+function switchToFormEntry(event) {
+  if (event.target.matches('.a-new')) {
+    $entriesView.className = 'hidden';
+    $formView.className = '';
+  }
+}
+
+// create new elements inside div data-view ='entries'. That tell user there are no entries recorded.
+/* <div data-view="entries" class="hidden">
+    <div class="row3 justify-between">
+     <div class="column-half">
+      <h1>Entries</h1>
+     </div>
+     <nav class="a-new-marg">
+       <a class="a-new" href="#">New</a>
+     </nav>
+    </div>
+
+// view when empty
+    <div class="row justify-center">
+     <p>No entries have been recorded.</p>
+    </div>
+
+    <ul>
+    </ul>
+   </div> */
+
+var $divEntriesView = document.querySelector('#entriesview');
+var $divEmptyEntries = document.createElement('div');
+$divEmptyEntries.className = 'row justify-center';
+$divEntriesView.append($divEmptyEntries);
+var $pMessage = document.createElement('p');
+$pMessage.textContent = 'No entries have been recorded.';
+$divEmptyEntries.append($pMessage);
