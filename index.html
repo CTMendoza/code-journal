@@ -19,12 +19,21 @@
   <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <h2 class="margin-auto">Code Journal</h2>
+  <header class="navbar">
+    <nav id="nav" class="container tab-container">
+      <div class="nav-marg" >
+        <h2>Code Journal</h2>
+      </div>
+      <nav>
+        <a href="#" class="a-entries">Entries</a>
+      </nav>
+    </nav>
   </header>
   <main class="container">
-    <h1>New Entry</h1>
-    <div data-view="entry-form ">
+    <div data-view="entry-form">
+      <div class="row3 justify-between">
+        <h1>New Entry</h1>
+      </div>
       <form action="" id="journal-entry">
         <div class="row">
           <div class="column-half column">
@@ -51,6 +60,18 @@
           <input type="submit" value="SAVE" class="save-bttn">
         </div>
       </form>
+    </div>
+    <div data-view="entries" class="hidden" id="entriesview">
+      <div class="row3 justify-between">
+        <div class="column-half">
+          <h1>Entries</h1>
+        </div>
+        <nav class="a-new-marg">
+          <a class="a-new" href="#">New</a>
+        </nav>
+      </div>
+      <ul>
+      </ul>
     </div>
   </main>
   <script src="js/data.js"></script>

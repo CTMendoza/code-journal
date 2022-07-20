@@ -4,10 +4,17 @@ body {
 
 header {
   background-color: #571089;
-  height: 57px;
 }
 
 h2 {
+  font-family:
+    "Titillium Web",
+    sans-serif;
+  color: white;
+  font-weight: 200;
+}
+
+a {
   font-family:
     "Titillium Web",
     sans-serif;
@@ -49,6 +56,50 @@ input:focus {
 
 textarea:focus {
   border-color: #571089;
+}
+
+ul {
+  list-style-type: none;
+  padding-inline-start: 0;
+}
+
+p {
+  font-family:
+    "Titillium Web",
+    sans-serif;
+}
+
+img {
+  object-fit: fill;
+}
+
+.a-entries {
+  text-decoration: none;
+}
+
+.a-new {
+  background-color: #571089;
+  text-decoration: none;
+  font-family:
+    "Titillium Web",
+    sans-serif;
+  padding: 6px 23px;
+  border-radius: 5px;
+}
+
+.h2-container {
+  max-width: 575px;
+  margin: 0 22px;
+}
+
+.li-marg-bot {
+  margin-bottom: 15%;
+}
+
+.title {
+  font-family:
+    "Titillium Web",
+    sans-serif;
 }
 
 .save-bttn {
