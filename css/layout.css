@@ -13,12 +13,6 @@
   padding: 0 22px;
 }
 
-.margin-auto {
-  /* max-width: 575px; */
-  margin: 0 auto;
-  padding: 5px 22px;
-}
-
 .nav-marg {
   margin-right: 5%;
   margin-left: 1%;
@@ -90,12 +84,6 @@
   /* .margin-auto {
     padding: 5px 30px;
   } */
-
-  .margin-auto {
-    /* max-width: 575px; */
-    margin: 0 auto;
-    padding: 5px 22px;
-  }
 
   .column-full,
   .column-half {

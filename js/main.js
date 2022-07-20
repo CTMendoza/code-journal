@@ -37,13 +37,17 @@ function handleSubmit(event) {
   $ul.prepend($entryDOM);
 
   // Ensure that submitting a new journal entry automatically shows the 'entries' view without reloading the page.
+
   $entriesView.className = '';
   $formView.className = 'hidden';
+
   // if data.entries is not an empty array update $divEmptyEntries.className to hidden
 
   if (data.entries.length > 0) {
     $divEmptyEntries.className = 'hidden';
   }
+
+  $renderCurrentPage('entries');
 
   $journalEntry.reset();
 }
@@ -103,6 +107,7 @@ function $appendEntry(event) {
   if (data.entries.length > 0) {
     $divEmptyEntries.className = 'hidden';
   }
+  $renderCurrentPage(data.view);
 }
 
 window.addEventListener('DOMContentLoaded', $appendEntry);
@@ -118,6 +123,7 @@ function switchToNewEntry(event) {
     $entriesView.className = '';
     $formView.className = 'hidden';
   }
+  $renderCurrentPage('entries');
 }
 
 // When clicking New nav item, user is brought the Form section of web page
@@ -131,6 +137,7 @@ function switchToFormEntry(event) {
     $entriesView.className = 'hidden';
     $formView.className = '';
   }
+  $renderCurrentPage('entry-form');
 }
 
 // create new elements inside div data-view ='entries'. That tell user there are no entries recorded.
@@ -160,3 +167,20 @@ $divEntriesView.append($divEmptyEntries);
 var $pMessage = document.createElement('p');
 $pMessage.textContent = 'No entries have been recorded.';
 $divEmptyEntries.append($pMessage);
+
+// Ensure that refreshing the pages shows the same view as before refreshing.
+// you have a function which takes a string as an argument, and shows the view with the matching data - view property
+// then you make sure to call that function anytime you want to update the view.
+// inside the function, you update the data.view property to match the argument passed in, so that property is always updated with the latest view value
+// When the page loads, you call the function in the DOMContentLoaded function and pass it the data.view attribute so it knows which view to show on load
+
+function $renderCurrentPage(string) {
+  data.view = string;
+  if (data.view === 'entry-form') {
+    $formView.className = '';
+    $entriesView.className = 'hidden';
+  } else if (data.view === 'entries') {
+    $formView.className = 'hidden';
+    $entriesView.className = '';
+  }
+}
