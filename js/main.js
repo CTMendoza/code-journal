@@ -84,13 +84,26 @@ function $renderEntry(entry) {
   var $divText = document.createElement('div');
   $divText.className = 'column-half';
   $divEntry.appendChild($divText);
+  //  Update entry rendering function to include an edit icon for each rendered entry.
+  // <div class="row justify-between align-center">
+  //   <h3 class="title">Ada LoveLace</h3>
+  //   <i class="fa-solid fa-pencil"></i>
+  // </div>
+  var $divTitleIcon = document.createElement('div');
+  $divTitleIcon.className = 'row justify-between align-center';
+  $divText.appendChild($divTitleIcon);
+  var $icon = document.createElement('i');
+  $icon.className = 'fa-solid fa-pencil';
   var $titleText = document.createElement('h3');
   $titleText.className = 'title';
   $titleText.textContent = entry.title;
-  $divText.appendChild($titleText);
+  $divTitleIcon.appendChild($titleText);
+  $divTitleIcon.appendChild($icon);
+  // $divText.appendChild($titleText);
   var $paragraphText = document.createElement('p');
   $paragraphText.textContent = entry.notes;
   $divText.appendChild($paragraphText);
+
   return $list;
 }
 
