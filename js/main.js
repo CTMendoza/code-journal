@@ -72,6 +72,7 @@ $journalEntry.addEventListener('submit', handleSubmit);
 // entry parameter should reflect data.entries[i]
 function $renderEntry(entry) {
   var $list = document.createElement('li');
+  $list.className = 'entry';
   var $divEntry = document.createElement('div');
   $divEntry.className = 'row li-marg-bot';
   $list.appendChild($divEntry);
@@ -93,7 +94,7 @@ function $renderEntry(entry) {
   $divTitleIcon.className = 'row justify-between align-center';
   $divText.appendChild($divTitleIcon);
   var $icon = document.createElement('i');
-  $icon.className = 'fa-solid fa-pencil';
+  $icon.className = 'fas fa-solid fa-pencil';
   var $titleText = document.createElement('h3');
   $titleText.className = 'title';
   $titleText.textContent = entry.title;
@@ -103,7 +104,8 @@ function $renderEntry(entry) {
   var $paragraphText = document.createElement('p');
   $paragraphText.textContent = entry.notes;
   $divText.appendChild($paragraphText);
-
+  // Ensure that each rendered entry is given a data - entry - id attribute indicating which entry it is.
+  $list.setAttribute('data-entry-id', entry.entryId);
   return $list;
 }
 
@@ -111,6 +113,7 @@ function $renderEntry(entry) {
 //  append it to the page when the 'DOMContentLoaded' event is fired.
 
 var $ul = document.querySelector('ul');
+$ul.className = 'entries-container';
 
 function $appendEntry(event) {
   for (var i = 0; i < data.entries.length; i++) {
@@ -196,4 +199,17 @@ function $renderCurrentPage(string) {
     $formView.className = 'hidden';
     $entriesView.className = '';
   }
+}
+
+// Listen for clicks on the parent element of all rendered entries.
+$ul.addEventListener('click', $returnToForm);
+function $returnToForm(event) {
+  // Show the entry form if an edit icon was clicked.
+  if (event.target.matches('.fas.fa-solid.fa-pencil')) {
+    $formView.className = '';
+    $entriesView.className = 'hidden';
+  }
+  // Find the matching entry object in the data model and assign it to the data model's editing property if an edit icon was clicked.
+  // var $iconParent = $icon.closest('li').getAttribute('data-entry-id');
+  // console.log($iconParent);
 }
