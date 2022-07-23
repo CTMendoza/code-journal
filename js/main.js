@@ -210,6 +210,18 @@ function $returnToForm(event) {
     $entriesView.className = 'hidden';
   }
   // Find the matching entry object in the data model and assign it to the data model's editing property if an edit icon was clicked.
-  // var $iconParent = $icon.closest('li').getAttribute('data-entry-id');
-  // console.log($iconParent);
+  var $dataEntryId = event.target.closest('li');
+  var $dataEntryIdAttriVal = $dataEntryId.getAttribute('data-entry-id');
+  // converting $dataEntryIdAtriVal from a string value to a numerical value;
+  var $dataEntryIdConvert = Number($dataEntryIdAttriVal);
+  // console.log($dataEntryId);
+  // console.log($dataEntryIdAttriVal);
+  // console.log($dataEntryIdConvert, typeof $dataEntryIdConvert);
+  // console.log('type of: ', typeof $dataEntryIdAttriVal);
+  // console.log('data.entries', data.entries);
+  for (var i = 0; i < data.entries.length; i++) {
+    if ($dataEntryIdConvert === data.entries[i].entryId) {
+      data.editing = data.entries[i];
+    }
+  }
 }
