@@ -47,6 +47,14 @@ function handleSubmit(event) {
         editNewObject.notes = $journalEntry.elements.notes.value;
         editNewObject.entryId = data.entries[i].entryId;
         data.entries[i] = editNewObject;
+        // Update the entry form's submit handler function to conditionally add a new entry DOM tree or replace the existing one.
+        var $li = $ul.getElementsByTagName('li');
+        for (var k = 0; k < $li.length; k++) {
+          if (Number($li[k].getAttribute('data-entry-id')) === editNewObject.entryId) {
+            var $editedEntryDOM = $renderEntry(editNewObject);
+            $li[k].replaceWith($editedEntryDOM);
+          }
+        }
       }
     }
   }
@@ -157,8 +165,7 @@ function switchToNewEntry(event) {
     $formView.className = 'hidden';
   }
   $renderCurrentPage('entries');
-  var $h1 = document.querySelector('h1');
-  $h1.textContent = 'New Entry';
+
 }
 
 // When clicking New nav item, user is brought the Form section of web page
@@ -173,6 +180,9 @@ function switchToFormEntry(event) {
     $formView.className = '';
   }
   $renderCurrentPage('entry-form');
+  var $h1 = document.querySelector('h1');
+  $h1.textContent = 'New Entry';
+  $img.setAttribute('src', 'images/placeholder-image-square.jpg');
 }
 
 // create new elements inside div data-view ='entries'. That tell user there are no entries recorded.
