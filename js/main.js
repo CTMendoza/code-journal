@@ -29,12 +29,37 @@ function handleSubmit(event) {
   var $photo = $journalEntry.elements.photourl.value;
   var $notes = $journalEntry.elements.notes.value;
   Object.assign(newObject, { title: $title, photo: $photo, notes: $notes });
-  newObject.entryId = data.nextEntryId;
-  data.nextEntryId++;
-  data.entries.unshift(newObject);
-  $img.setAttribute('src', 'images/placeholder-image-square.jpg');
-  var $entryDOM = $renderEntry(newObject);
-  $ul.prepend($entryDOM);
+  // check if newObject is an edit or a new entry
+  if (data.editing === null) {
+    newObject.entryId = data.nextEntryId;
+    data.nextEntryId++;
+    data.entries.unshift(newObject);
+    $img.setAttribute('src', 'images/placeholder-image-square.jpg');
+    var $entryDOM = $renderEntry(newObject);
+    $ul.prepend($entryDOM);
+  } else if (data.editing !== null) {
+    // Update the entry form's submit handler function to conditionally add a new entry object or update the existing one.
+    for (var i = 0; i < data.entries.length; i++) {
+      if (data.editing.entryId === data.entries[i].entryId) {
+        var editNewObject = {};
+        editNewObject.title = $journalEntry.elements.title.value;
+        editNewObject.photo = $journalEntry.elements.photourl.value;
+        editNewObject.notes = $journalEntry.elements.notes.value;
+        editNewObject.entryId = data.entries[i].entryId;
+        data.entries[i] = editNewObject;
+        // Update the entry form's submit handler function to conditionally add a new entry DOM tree or replace the existing one.
+        var $li = $ul.getElementsByTagName('li');
+        for (var k = 0; k < $li.length; k++) {
+          if (Number($li[k].getAttribute('data-entry-id')) === editNewObject.entryId) {
+            var $editedEntryDOM = $renderEntry(editNewObject);
+            $li[k].replaceWith($editedEntryDOM);
+          }
+        }
+      }
+    }
+  }
+
+  data.editing = null;
 
   // Ensure that submitting a new journal entry automatically shows the 'entries' view without reloading the page.
 
@@ -72,6 +97,7 @@ $journalEntry.addEventListener('submit', handleSubmit);
 // entry parameter should reflect data.entries[i]
 function $renderEntry(entry) {
   var $list = document.createElement('li');
+  $list.className = 'entry';
   var $divEntry = document.createElement('div');
   $divEntry.className = 'row li-marg-bot';
   $list.appendChild($divEntry);
@@ -84,13 +110,27 @@ function $renderEntry(entry) {
   var $divText = document.createElement('div');
   $divText.className = 'column-half';
   $divEntry.appendChild($divText);
+  //  Update entry rendering function to include an edit icon for each rendered entry.
+  // <div class="row justify-between align-center">
+  //   <h3 class="title">Ada LoveLace</h3>
+  //   <i class="fa-solid fa-pencil"></i>
+  // </div>
+  var $divTitleIcon = document.createElement('div');
+  $divTitleIcon.className = 'row justify-between align-center';
+  $divText.appendChild($divTitleIcon);
+  var $icon = document.createElement('i');
+  $icon.className = 'fas fa-solid fa-pencil';
   var $titleText = document.createElement('h3');
   $titleText.className = 'title';
   $titleText.textContent = entry.title;
-  $divText.appendChild($titleText);
+  $divTitleIcon.appendChild($titleText);
+  $divTitleIcon.appendChild($icon);
+  // $divText.appendChild($titleText);
   var $paragraphText = document.createElement('p');
   $paragraphText.textContent = entry.notes;
   $divText.appendChild($paragraphText);
+  // Ensure that each rendered entry is given a data - entry - id attribute indicating which entry it is.
+  $list.setAttribute('data-entry-id', entry.entryId);
   return $list;
 }
 
@@ -98,6 +138,7 @@ function $renderEntry(entry) {
 //  append it to the page when the 'DOMContentLoaded' event is fired.
 
 var $ul = document.querySelector('ul');
+$ul.className = 'entries-container';
 
 function $appendEntry(event) {
   for (var i = 0; i < data.entries.length; i++) {
@@ -124,6 +165,7 @@ function switchToNewEntry(event) {
     $formView.className = 'hidden';
   }
   $renderCurrentPage('entries');
+
 }
 
 // When clicking New nav item, user is brought the Form section of web page
@@ -138,6 +180,9 @@ function switchToFormEntry(event) {
     $formView.className = '';
   }
   $renderCurrentPage('entry-form');
+  var $h1 = document.querySelector('h1');
+  $h1.textContent = 'New Entry';
+  $img.setAttribute('src', 'images/placeholder-image-square.jpg');
 }
 
 // create new elements inside div data-view ='entries'. That tell user there are no entries recorded.
@@ -183,4 +228,41 @@ function $renderCurrentPage(string) {
     $formView.className = 'hidden';
     $entriesView.className = '';
   }
+}
+
+// Listen for clicks on the parent element of all rendered entries.
+$ul.addEventListener('click', $returnToForm);
+function $returnToForm(event) {
+  // Show the entry form if an edit icon was clicked.
+  if (event.target.matches('.fas.fa-solid.fa-pencil')) {
+    $formView.className = '';
+    $entriesView.className = 'hidden';
+  }
+  // Find the matching entry object in the data model and assign it to the data model's editing property if an edit icon was clicked.
+  var $dataEntryId = event.target.closest('li');
+  var $dataEntryIdAttriVal = $dataEntryId.getAttribute('data-entry-id');
+  // converting $dataEntryIdAtriVal from a string value to a numerical value;
+  var $dataEntryIdConvert = Number($dataEntryIdAttriVal);
+  // console.log($dataEntryId);
+  // console.log($dataEntryIdAttriVal);
+  // console.log($dataEntryIdConvert, typeof $dataEntryIdConvert);
+  // console.log('type of: ', typeof $dataEntryIdAttriVal);
+  // console.log('data.entries', data.entries);
+  for (var i = 0; i < data.entries.length; i++) {
+    if ($dataEntryIdConvert === data.entries[i].entryId) {
+      data.editing = data.entries[i];
+    }
+  }
+  // Pre - populate the entry form with the clicked entry's values from the object found in the data model.
+  $journalEntry.elements.title.value = data.editing.title;
+  $journalEntry.elements.photourl.value = data.editing.photo;
+  $journalEntry.elements.notes.value = data.editing.notes;
+
+  var $imgSrc = $img.getAttribute('src');
+  if ($imgSrc !== data.editing.photo) {
+    $img.setAttribute('src', data.editing.photo);
+  }
+  // change h1 text content when edit icon is clicked
+  var $h1 = document.querySelector('h1');
+  $h1.textContent = 'Edit Entry';
 }
