@@ -128,3 +128,86 @@ img {
 .labels-marg-top {
   margin-top: 0.75rem;
 }
+
+.delete-button {
+  font-family:
+    "Titillium Web",
+    sans-serif;
+  font-size: 18px;
+  border: none;
+  background: none;
+  text-decoration: underline;
+  text-decoration-color: #ef233c;
+  color: #ef233c;
+}
+
+/* styling for modal */
+
+.flex-row-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgb(0 0 0 / 75%);
+}
+
+.flex-column {
+  padding: 5%;
+  border-radius: 5px;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+}
+
+.font {
+  font-family:
+    "Titillium Web",
+    sans-serif;
+  font-size: 175%;
+  font-weight: bold;
+  color: black;
+}
+
+.confirm-bttn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family:
+    "Titillium Web",
+    sans-serif;
+  font-size: 156%;
+  background-color: #f25c54;
+  color: white;
+  border-radius: 5px;
+  width: 28%;
+  height: 67px;
+  border: none;
+  padding: 5%;
+
+  /* margin: 5%; */
+  box-shadow: 0 5px 10px rgb(85 84 84);
+}
+
+.cancel-bttn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family:
+    "Titillium Web",
+    sans-serif;
+  font-size: 156%;
+  background-color: #adb5bd;
+  color: black;
+  border-radius: 5px;
+  width: 28%;
+  height: 67px;
+  border: none;
+  padding: 5%;
+
+  /* margin: 5%; */
+  box-shadow: 0 5px 10px rgb(85 84 84);
+}

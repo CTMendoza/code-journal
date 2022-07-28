@@ -165,6 +165,10 @@ function switchToNewEntry(event) {
     $formView.className = 'hidden';
   }
   $renderCurrentPage('entries');
+  // clear edited input values
+  // $journalEntry[0].setAttribute('value', '');
+  // $journalEntry[1].setAttribute('value', '');
+  // $journalEntry[2].setAttribute('value', '');
 
 }
 
@@ -183,6 +187,15 @@ function switchToFormEntry(event) {
   var $h1 = document.querySelector('h1');
   $h1.textContent = 'New Entry';
   $img.setAttribute('src', 'images/placeholder-image-square.jpg');
+
+  // // clear edited input values
+  // $journalEntry[0].setAttribute('value', '');
+  // $journalEntry[1].setAttribute('value', '');
+  // $journalEntry[2].setAttribute('value', '');
+
+  // hide delete entry button when clicking the New anchor and reset div container classname
+  $deleteEntryButton.className = 'delete-button hidden';
+  $divDeleteSaveContainer.className = 'row justify-end labels-marg-top column-full';
 }
 
 // create new elements inside div data-view ='entries'. That tell user there are no entries recorded.
@@ -265,4 +278,15 @@ function $returnToForm(event) {
   // change h1 text content when edit icon is clicked
   var $h1 = document.querySelector('h1');
   $h1.textContent = 'Edit Entry';
+  // Add a click target for deleting an entry to the entry form that only appears if the user is editing an entry.
+  // <div class="row justify-between labels-marg-top column-full">
+  //         <button class="delete-button"> Delete Entry </button>
+  //         <input type="submit" value="SAVE" class="save-bttn">
+  //       </div>
+  // when edit icon is clicked, unhide delte button and changed container div class to justify-between
+  $deleteEntryButton.className = 'delete-button';
+  $divDeleteSaveContainer.className = 'row justify-between labels-marg-top column-full';
 }
+// create button element and give it a className
+var $deleteEntryButton = document.getElementById('delete-entry');
+var $divDeleteSaveContainer = $journalEntry.getElementsByTagName('div')[7];
