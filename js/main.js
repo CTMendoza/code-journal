@@ -287,6 +287,60 @@ function $returnToForm(event) {
   $deleteEntryButton.className = 'delete-button';
   $divDeleteSaveContainer.className = 'row justify-between labels-marg-top column-full';
 }
-// create button element and give it a className
+// create  delete button element and give it a className
 var $deleteEntryButton = document.getElementById('delete-entry');
 var $divDeleteSaveContainer = $journalEntry.getElementsByTagName('div')[7];
+
+//  Show a confirmation modal when the user clicks the Delete Entry click target.
+$deleteEntryButton.addEventListener('click', $showModal);
+
+var $modal = document.querySelector('.flex-row-modal.hidden');
+
+function $showModal(event) {
+  event.stopPropagation();
+  if (event.target.matches('#delete-entry')) {
+    $modal.className = 'flex-row-modal';
+  }
+}
+
+// Hide the modal if the user clicks Cancel.
+var $cancelButton = document.getElementById('cancel-button');
+
+function $returnToEdit(event) {
+  if (event.target.matches('#cancel-button')) {
+    $modal.className = 'flex-row-modal hidden';
+  }
+}
+
+$cancelButton.addEventListener('click', $returnToEdit);
+
+// Remove the entry from the data model and the entry's DOM tree from the page if the user clicks Delete.
+var $confirmButton = document.getElementById('confirm-button');
+
+function $deleteAnEntry(event) {
+  // Remove the entry from the data model and the entrys DOM tree from the page if the user clicks Confirm
+  // assign a list of child li elements to a variable
+  var $childEntries = $ul.children;
+  // loop through li list and check for the one that has the same entryId as the edited entry.
+  for (var i = 0; i < $childEntries.length; i++) {
+    if (data.editing.entryId === Number($childEntries[i].getAttribute('data-entry-id'))) {
+    // if true, remove the child entry from the DOM
+      $childEntries[i].remove();
+    }
+  }
+  // Remove the entry from the data model
+  // loop through entries array and check for the one that has the same entryId as the edited entry.
+  for (var k = 0; k < data.entries.length; k++) {
+    if (data.editing.entryId === data.entries[k].entryId) {
+      data.entries.splice(k, 1);
+    }
+  }
+  // show the Entries list if the user clicks Delete.
+  if (event.target.matches('#confirm-button')) {
+    $modal.className = 'flex-row-modal hidden';
+    $entriesView.className = '';
+    $formView.className = 'hidden';
+  }
+}
+
+$confirmButton.addEventListener('click', $deleteAnEntry);
